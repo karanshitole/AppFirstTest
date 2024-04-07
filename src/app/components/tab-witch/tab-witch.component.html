@@ -1,0 +1,146 @@
+
+<h2 class="bg-primary">Tab-Switch</h2>
+
+<ul class="nav nav-pills">
+    <li class="nav-item">
+        <a href="javascript:;"
+        [ngClass]="{
+            active:selectedFramwork==='angular'
+        }"
+         class="nav-link text-uppercase"
+         (click)="selectedFramwork='angular'"
+         >
+         angular
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="javascript:;"
+        [ngClass]="{
+            active:selectedFramwork==='react'
+        }"
+         class="nav-link text-uppercase"
+         (click)="selectedFramwork='react'"
+         >React
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="javascript:;"
+        [ngClass]="{
+            active:selectedFramwork==='flex'
+        }"
+         class="nav-link text-uppercase"
+         (click)="selectedFramwork='flex'"
+         >Flex
+        </a>
+    </li>
+    
+</ul>
+
+    <ng-container [ngSwitch]="selectedFramwork">
+        <p class="alert alert-info" *ngSwitchCase="'angular'">
+        <strong>Angular</strong>
+        Angular is a TypeScript-based, free and open-source single-page web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS
+        </p>
+        <p class="alert alert-info" *ngSwitchCase="'react'">
+            <strong>React</strong>
+            react is a TypeScript-based, free and open-source single-page web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS
+            </p>
+            <p class="alert alert-info" *ngSwitchCase="'flex'">
+                <strong>Flex</strong>
+                flex is a TypeScript-based, free and open-source single-page web application framework led by the Angular Team at Google and by a community of individuals and corporations. Angular is a complete rewrite from the same team that built AngularJS
+                </p>
+
+    </ng-container>
+    <!-- <div class="tab-contet mt-4"  >
+        <ng-container *ngFor="let tab of tabArr">
+            <div 
+            *ngIf="tab.TabTitle.toLowerCase().includes(selectedFramwork)"
+            class="card">
+            <div class="card-body" [innerHTML]="'tab.TabContent'">
+
+            </div>
+            </div>
+        </ng-container>
+        
+
+    </div> -->
+<hr>
+<h2 class="bg-success text-white p-2">Table for Student List</h2>
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table table-bordered bg-primary text-white">
+                <thead>
+                    <tr>
+                        <th>Sr.no</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Age</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let str of studentArr; let i=index">
+                        <td>{{i+1}}</td>
+                        <td>{{str.fname}}</td>
+                        <td>{{str.lname}}</td>
+                        <td>{{str.email}}</td>
+                        <td>{{str.age}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<hr>
+<h1 class="bg-success text-white p-2">Student List</h1>
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="fname">First Name</label>
+                <input type="text" #fname class="form-control" id="fname">
+            </div>
+            <div class="form-group">
+                <label for="fname">Last Name</label>
+                <input type="text" #lname class="form-control" id="lname">
+            </div>
+            <div class="form-group">
+                <label for="fname">Email</label>
+                <input type="text" #email class="form-control" id="email">
+            </div>
+            <div class="form-group">
+                <label for="fname">contact</label>
+                <input type="text" #contact class="form-control" id="contact">
+            </div>
+            <button class="btn btn-primary btn-block"
+            (click)="onstd(fname,lname,email,contact)"
+            >Add Student</button>
+        </div>
+        <div class="col-md-6">
+            <table class="table table-bordered bg-success text-white" *ngIf="strArr.length>0;else notstd">
+                <thead>
+                    <tr>
+                        <th>sr</th>
+                        <th>First name</th>
+                        <th>Last name</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let std of strArr; let i =index">
+                        <td>{{i + 1}}</td>
+                        <td>{{std.fname}}</td>
+                        <td>{{std.lname}}</td>
+                        <td>{{std.email}}</td>
+                        <td>{{std.contact}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <ng-template #notstd>
+                <p class="alert alert-warning"> no student data</p>
+            </ng-template>
+        </div>
+    </div>
+</div>
